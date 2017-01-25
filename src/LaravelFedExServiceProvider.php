@@ -30,7 +30,7 @@ class LaravelFedExServiceProvider extends ServiceProvider {
 	public function register()
 	{
 
-		$this->app->bind('ysfedex', 'yasmuru\LaravelTinify\FedEx');
+		$this->app->bind('ysfedex', 'yasmuru\LaravelFedEx\FedEx');
 
 	}
 
