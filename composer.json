@@ -1,0 +1,23 @@
+{
+  "name": "yasmuru/ysFedEx",
+  "type": "library",
+  "description": "FedEx tracking support for laravel",
+  "keywords": ["FedEx","laravel", "tracking"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "yasmuru",
+      "email": "yasmuru@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "illuminate/support": "~5.2",
+  },
+  "autoload": {
+    "psr-4": {
+      "yasmuru\\FedEx\\": "src"
+    }
+  },
+  "minimum-stability": "stable"
+}
