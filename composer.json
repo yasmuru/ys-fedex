@@ -1,5 +1,5 @@
 {
-  "name": "yasmuru/ysFedEx",
+  "name": "yasmuru/ys-fedex",
   "type": "library",
   "description": "FedEx tracking support for laravel",
   "keywords": ["FedEx","laravel", "tracking"],
