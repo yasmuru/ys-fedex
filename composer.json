@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "yasmuru\\FedEx\\": "src"
+      "yasmuru\\LaravelFedEx\\": "src"
     }
   },
   "minimum-stability": "stable"
