@@ -1,9 +1,9 @@
 <?php
-namespace Aquatic\FedEx\Request\Shipment;
-use Aquatic\FedEx\Request;
-use Aquatic\FedEx\Contract\Address;
-use Aquatic\FedEx\Contract\Shipment;
-use Aquatic\FedEx\Contract\Shipment\Item;
+namespace yasmuru\LaravelFedEx\Request\Shipment;
+use yasmuru\LaravelFedEx\Request;
+use yasmuru\LaravelFedEx\Contract\Address;
+use yasmuru\LaravelFedEx\Contract\Shipment;
+use yasmuru\LaravelFedEx\Contract\Shipment\Item;
 class CustomsAndDuties extends Request
 {
     public $_version = '18.0.0';
