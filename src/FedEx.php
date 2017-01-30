@@ -15,33 +15,34 @@ use yasmuru\LaravelFedEx\Response\Shipment\CustomsAndDuties as CustomsAndDutiesR
 // Facade for FedEx requests
 class FedEx
 {
+
     public function __construct() {
-        $this->fedex_key = env('FEDEX_KEY');
+        $fedex_key = env('FEDEX_KEY');
         $this->fedex_password = env('FEDEX_PASSWORD');
         $this->fedex_account_number = env('FEDEX_ACCOUNT_NUMBER');
         $this->fedex_meter_number = env('FEDEX_METER_NUMBER');
-        if(!$this->fedex_key || !$this->fedex_password || !$this->fedex_account_number || !$this->fedex_meter_number) {
+        if(!$fedex_key || !$this->fedex_password || !$this->fedex_account_number || !$this->fedex_meter_number) {
             throw new \InvalidArgumentException('Please set FEDEX environment variables.');
         }
     }
     public static function trackShipment(int $tracking_number): ResponseContract
     {
         return (new TrackShipmentRequest($tracking_number))
-            ->setCredentials( $this->fedex_key, $this->fedex_password, $this->fedex_account_number, $this->fedex_meter_number)
+            ->setCredentials( env('FEDEX_KEY'), env('FEDEX_PASSWORD'), env('FEDEX_ACCOUNT_NUMBER'), env('FEDEX_METER_NUMBER'))
             ->send(new TrackShipmentResponse);
     }
     
     public static function customsAndDuties(Shipment $shipment, Address $shipper)
     {
         return (new CustomsAndDutiesRequest($shipment, $shipper))
-            ->setCredentials( $this->fedex_key, $this->fedex_password, $this->fedex_account_number, $this->fedex_meter_number)
+            ->setCredentials( env('FEDEX_KEY'), env('FEDEX_PASSWORD'), env('FEDEX_ACCOUNT_NUMBER'), env('FEDEX_METER_NUMBER'))
             ->send(new CustomsAndDutiesResponse($shipment->getItems()));
     }
 
     public static function validateAddress(Address $address)
     {
         return (new ValidateAddressRequest($address))
-            ->setCredentials( $this->fedex_key, $this->fedex_password, $this->fedex_account_number, $this->fedex_meter_number)
+            ->setCredentials( env('FEDEX_KEY'), env('FEDEX_PASSWORD'), env('FEDEX_ACCOUNT_NUMBER'), env('FEDEX_METER_NUMBER'))
             ->send(new ValidateAddressResponse);
     }
 }

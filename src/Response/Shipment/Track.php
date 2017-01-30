@@ -60,6 +60,9 @@ class Track extends Response
         parent::parse($response, $request);
 
         $this->failed = 1;
+        if(isset($response->HighestSeverity) && $response->HighestSeverity == 'ERROR') {
+            return $this;
+        }
 
         if($response->CompletedTrackDetails->TrackDetails->Notification->Severity != 'SUCCESS')
             return $this;

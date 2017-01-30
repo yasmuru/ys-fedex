@@ -1,6 +1,6 @@
 <?php
 
-namespace yasmuru\LaravelFedExRequest;
+namespace yasmuru\LaravelFedEx\Request;
 
 use yasmuru\LaravelFedEx\Response\Contract as Response;
 use SoapClient;

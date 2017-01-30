@@ -3,6 +3,7 @@
 namespace yasmuru\LaravelFedEx;
 
 use Illuminate\Support\ServiceProvider;
+use yasmuru\LaravelFedEx\FedEx;
 
 class LaravelFedExServiceProvider extends ServiceProvider {
 
@@ -29,8 +30,11 @@ class LaravelFedExServiceProvider extends ServiceProvider {
 	*/
 	public function register()
 	{
+        $this->app->singleton('ysFedEx', function ($app) {
+            return new FedEx();
+        });
 
-		$this->app->bind('ysfedex', 'yasmuru\LaravelFedEx\FedEx');
+//		$this->app->bind('ysfedex', 'yasmuru\LaravelFedEx\FedEx');
 
 	}
 

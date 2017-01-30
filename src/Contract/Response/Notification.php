@@ -1,6 +1,6 @@
 <?php
 
-namespace Ayasmuru\LaravelFedEx\Contract\Response;
+namespace yasmuru\LaravelFedEx\Contract\Response;
 
 interface Notification
 {
