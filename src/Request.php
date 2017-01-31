@@ -71,8 +71,14 @@ abstract class Request implements RequestContract
 
     public function getSoap(): SoapClient
     {
-        if(!($this->_soapInstance instanceof SoapClient))
-            $this->_soapInstance = new SoapClient($this->_getWsdl(), ['trace' => 1]);
+        if(!($this->_soapInstance instanceof SoapClient)) {
+            if(env('FEDEX_TEST', 'FALSE') == 'TRUE') {
+                $location = 'https://wsbeta.fedex.com:443/web-services/track';
+            } else {
+                $location = 'https://ws.fedex.com:443/web-services/track';
+            }
+            $this->_soapInstance = new SoapClient($this->_getWsdl(), ['trace' => 1, 'location' => $location]);
+        }
 
         return $this->_soapInstance;
     }
