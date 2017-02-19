@@ -79,7 +79,6 @@ abstract class Request implements RequestContract
             }
             $this->_soapInstance = new SoapClient($this->_getWsdl(), ['trace' => 1, 'location' => $location]);
         }
-
         return $this->_soapInstance;
     }
 

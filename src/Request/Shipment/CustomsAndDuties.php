@@ -69,6 +69,8 @@ class CustomsAndDuties extends Request
                 'PackageDetail' => 'INDIVIDUAL_PACKAGES',
             ]
         ];
+
+//        dd($this->data);
     }
     protected function parseShipmentPackageLineItems(Shipment $shipment): array
     {

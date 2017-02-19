@@ -23,20 +23,23 @@ class CustomsAndDuties extends Response
 
         $check_types = ['INTERNATIONAL_PRIORITY', 'INTERNATIONAL_ECONOMY'];
 
-        foreach($response->RateReplyDetails as $shipping_method)
-        {
-            if(!in_array($shipping_method->ServiceType, $check_types) || $this->_totalDuties > 0) continue;
-            foreach($shipping_method->RatedShipmentDetails as $detail)
-            {
-                if($this->_totalDuties > 0 ||
-                    !isset($detail->ShipmentRateDetail) ||
-                    !isset($detail->ShipmentRateDetail->TotalDutiesAndTaxes) ||
-                    !isset($detail->ShipmentRateDetail->DutiesAndTaxes)) continue;
+        if(isset($response->RateReplyDetails)) {
 
-                $this->_totalDuties = floatval($detail->ShipmentRateDetail->TotalDutiesAndTaxes->Amount);
+            foreach ($response->RateReplyDetails as $shipping_method) {
+                dd($shipping_method);
+                if (!in_array($shipping_method->ServiceType, $check_types) || $this->_totalDuties > 0) continue;
+                foreach ($shipping_method->RatedShipmentDetails as $detail) {
+                    if ($this->_totalDuties > 0 ||
+                        !isset($detail->ShipmentRateDetail) ||
+                        !isset($detail->ShipmentRateDetail->TotalDutiesAndTaxes) ||
+                        !isset($detail->ShipmentRateDetail->DutiesAndTaxes)
+                    ) continue;
 
-                $item_duties = !is_array($detail->ShipmentRateDetail->DutiesAndTaxes) ? [$detail->ShipmentRateDetail->DutiesAndTaxes] : $detail->ShipmentRateDetail->DutiesAndTaxes;
-                $this->parseItemDuties($item_duties);
+                    $this->_totalDuties = floatval($detail->ShipmentRateDetail->TotalDutiesAndTaxes->Amount);
+
+                    $item_duties = !is_array($detail->ShipmentRateDetail->DutiesAndTaxes) ? [$detail->ShipmentRateDetail->DutiesAndTaxes] : $detail->ShipmentRateDetail->DutiesAndTaxes;
+                    $this->parseItemDuties($item_duties);
+                }
             }
         }
 
